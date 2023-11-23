@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import Modal from './components/Modal';
+import Menus from './components/Menus';   
+import Tooltips from './components/Tooltips';
 
-function App() {
+const App = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Tooltips />
+      <Menus />
+      <button onClick={toggleModal}>Ouvrir la Modale</button>
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <p>Contenu de la modale</p>
+      </Modal>
     </div>
   );
-}
+};
 
 export default App;
